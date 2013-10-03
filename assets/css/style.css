@@ -1,0 +1,85 @@
+html,body{
+    height: 100%
+}
+
+.container {
+	width: 980px;
+	margin: auto;
+}
+
+.container > .row{
+	padding-top:1em;
+}
+.section-heading{
+	font-size: 70px;
+	text-align: center;
+	padding: auto;
+	font-family: 'Lato hairline', Arial, Helvetica, sans-serif;
+}
+div.section {
+	height: 100%;
+}
+
+div#intro{
+	background-color: #8e44ad;
+	padding-top: 10%;
+	color:white;
+}
+div#inputstring{
+	background-color: #2980b9;
+	color: white;
+}
+div.tokenElement{
+	padding: 10px;
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 2px;
+	margin: 8px;
+}
+h1.section-heading{
+	text-align: center;
+}
+p.text{
+	text-align: center;
+}
+div#nav{
+	background-color: #2c3e50;
+	border-radius: 0px;
+	padding-bottom: 10px;
+}
+p.text{
+	text-align: center;
+}
+.amble{
+	font-family: 'amblelight', Arial, Helvetica, sans-serif;
+}
+
+.lato-bl{
+	font-family: 'Lato black', Arial, Helvetica, sans-serif;
+}
+/** Lato font font-family **/
+@font-face {
+  font-family: 'Lato black';
+  src: url('../fonts/lato/lato-bla-webfont.eot');
+  src: url('../fonts/lato/lato-bla-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-bla-webfont.woff') format('woff'), url('../fonts/lato/lato-bla-webfont.ttf') format('truetype'), url('../fonts/lato/lato-bla-webfont.svg#webfont') format('svg');
+}
+
+/** Lato font font-family **/
+@font-face {
+  font-family: 'Lato hairline';
+  src: url('../fonts/lato/lato-hai-webfont.eot');
+  src: url('../fonts/lato/lato-hai-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-hai-webfont.woff') format('woff'), url('../fonts/lato/lato-hai-webfont.ttf') format('truetype'), url('../fonts/lato/lato-hai-webfont.svg#webfont') format('svg');
+}
+@font-face {
+    font-family: 'amblelight';
+    src: url('../fonts/Amble-Light-webfont.eot');
+    src: url('../fonts/Amble-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Amble-Light-webfont.woff') format('woff'),
+         url('../fonts/Amble-Light-webfont.ttf') format('truetype'),
+         url('../fonts/Amble-Light-webfont.svg#amblelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+

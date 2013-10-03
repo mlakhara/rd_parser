@@ -1,0 +1,126 @@
+<html>
+	<head>
+		<!-- All includes here -->
+		<!-- CSS Files -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="assets/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"><!-- Loading Flat UI -->
+		<link href="assets/css/css/flat-ui.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+		<script language="javascript" type="text/javascript" src="assets/js/jq.min.js">
+</script>
+		<script language="javascript" type="text/javascript" src="assets/js/jit/jit-yc.js">
+</script>
+		<title></title>
+	</head>
+	<body>
+		<div id="storyboard">
+			<div class="section" id="intro">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="section-heading">
+								Recursive Descent Parser
+							</h1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<p class="amble text">
+								A recursive descent parser is a kind of top-down parser built from a set of mutually recursive procedures (or a non-recursive equivalent) where each such procedure usually implements one of the production rules of the grammar. Thus the structure of the resulting program closely mirrors that of the grammar it recognizes.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section" id="grammer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="section-heading">
+								The Grammer
+							</h1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<p class="amble text">
+								This visualisation implements the parser for language represented by the following productions.
+							</p>
+							<p class="lato-bl text">
+								E-&gt;TE’<br>
+								E’-&gt;+TE’|-TE’| ε<br>
+								T -&gt; FT'<br>
+								T’-&gt;*FT’|/FT’| ε<br>
+								F -&gt; (E) | id
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section" id="inputstring">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="section-heading">
+								Input String
+							</h1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<p class="amble text">
+								Enter the string to be parsed.
+							</p>
+							<div class="form-group">
+								<label class="sr-only" for="exampleInputEmail2">String</label> <input type="text" class="form-control" id="parsingString" placeholder="Enter String">
+							</div>
+							<button type="submit"  id="parseStart" class="btn btn-inverse">That's it</button>
+							<button type="submit"  id="reset" class="btn btn-inverse">Reset</button>
+						</div>
+					</div>
+					<div class="row" id="modifiedStringContainer" style="display:none">
+						<div class="col-md-12">
+							<p class="amble text">
+								The input string is of the form :
+							</p>
+						</div>
+						<div class="col-md-12 tokenElement" id="modifiedString">
+							
+						</div>
+						<div class="col-md-12">
+							<button class="btn btn-success" id="startParsing" >Start Parsing</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+				<div class="section" id="parserContainer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h3 class="section-heading">
+								ParseTree
+							</h3>
+						</div>
+					</div>
+					<div class="row">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="nav" class="navbar navbar-fixed-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 pull-left">
+						<button id="prev-button" class="btn btn-block btn-primary">Previous</button>
+					</div>
+					<div class="col-md-3 pull-right">
+						<button id="next-button" class="btn pull-right btn-block btn-primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div><script type="text/javascript" src="assets/js/script.js">
+</script>
+	</body>
+</html>
