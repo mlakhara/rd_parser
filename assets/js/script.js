@@ -5,6 +5,12 @@ $(document).on('ready',function(){
 	$("#startParsing").on('click',function(){
 		navBar.next();
 		parser.start();
+		console.log(parser.errorFlag);
+		if(!parser.errorFlag){
+			parser.success();
+		}else{
+			parser.failure();
+		}
 	});
 
 });
@@ -13,6 +19,13 @@ var parser = {
 	tokens : [],
 	cursor : 0,
 	currentToken : "",
+	errorFlag : false,
+	reset : function(){
+		this.cursor = 0;
+		this.errorFlag = false;
+		this.currentToken = "";
+		this.tokens = [];
+	},
 	next : function(){
 		this.currentToken = this.tokens[this.cursor];
 		this.cursor++;
@@ -20,15 +33,19 @@ var parser = {
 	start : function(){
 		this.tokens = tokenizer.tokens;
 		console.log(this.tokens);
+		console.log(this.currentToken);
+		console.log(this.errorFlag);
+		console.log(this.cursor);
 		this.next();
 		this.E();
 	},
 	error : function(){
-		alert("Error");
+		this.errorFlag = true;
 		console.log("Error");
 	},
 
 	Td : function(){
+			console.log("Td");
 		if(this.currentToken == "*" || this.currentToken == "/" ){
 			this.next();
 			this.F();
@@ -40,6 +57,7 @@ var parser = {
 	},
 
 	F : function(){
+			console.log("F");
 		if(this.currentToken == '('){
 			this.next();
 			this.E();
@@ -55,11 +73,14 @@ var parser = {
 	},
 
 	T : function(){
+			console.log("T");
 		this.F();
-		this.td();
+		this.Td();
 	},
 
 	Ed: function(){
+			console.log("Ed");
+			console.log(this.currentToken);
 		if(this.currentToken == '+' || this.currentToken == '-'){
 			this.next();
 			this.T();
@@ -69,8 +90,16 @@ var parser = {
 			this.error();
 	},	
  	E : function(){
+ 		console.log("E");
 		this.T();
 		this.Ed();
+	},
+
+	success : function(){
+		$("#parserContainer").addClass("success");
+	},
+	failure : function(){
+		$("#parserContainer").addClass("error");
 	}
 }
 
@@ -95,9 +124,9 @@ var navBar = {
 
 	next : function(){	
 		var self = this;
-		console.log("Next click");
+	//	console.log("Next click");
 		this.nextSection = this.currentSection.next();
-		console.log(this.nextSection);
+	//	console.log(this.nextSection);
 		$(this.nextSection).show();
 		 scrollTo(this.nextSection,function(){
 				self.currentSection = self.nextSection;
@@ -108,7 +137,7 @@ var navBar = {
 		var self = this;
 		console.log("Previous click");
 		this.nextSection = this.currentSection.prev();
-		console.log(this.nextSection);
+		//console.log(this.nextSection);
 		 scrollTo(this.nextSection,function(){
 			self.currentSection.hide(function(){
 				self.currentSection = self.nextSection;
@@ -126,21 +155,24 @@ var tokenizer = {
 	init: function(){
 		var self = this;
 		this.parseButton.on('click',function(){
-			console.log("Yokenizer started");
+			//console.log("Yokenizer started");
 			self.setString( $("#parsingString").val());
 			self.tokenize();
 		});
 		this.resetButton.on('click',function(){
 			self.reset();
-			
+			parser.reset();
 		})
 	},
 	reset : function(){
 		this.string = "";
 		this.modifiedString = "";
 		this.tokens = [];
-		 $("#parsingString").val("");
+		$("#parsingString").val("");
 		$("#modifiedStringContainer").hide();
+		$("#parserContainer").removeClass("success");
+		$("#parserContainer").removeClass("success");
+
 	},
 	setString : function(string){
 		this.string = string;
@@ -148,7 +180,7 @@ var tokenizer = {
 	},
 	stripSpace : function(){
 		this.string = this.string.replace(/\s+/g, '');
-		console.log(this.string);
+		//console.log(this.string);
 	},
 	tokenize : function(){
 		var cursor = 0;
@@ -158,12 +190,12 @@ var tokenizer = {
 		this.modifiedString = "";
 		while(cursor <= this.string.length){
 			curChar = this.string.charAt(cursor);
-			console.log('curChar');
-			console.log(curChar);
+			//console.log('curChar');
+			//console.log(curChar);
 			if(!this.is_operator(curChar)){
 				identifierBuffer = identifierBuffer + curChar;
-				console.log('identifierBuffer');
-				console.log(identifierBuffer);
+				//console.log('identifierBuffer');
+				//console.log(identifierBuffer);
 			}else{
 				if(identifierBuffer.length > 0){
 					this.modifiedString = this.modifiedString + 'id' + curChar;
@@ -172,15 +204,15 @@ var tokenizer = {
 					this.modifiedString = this.modifiedString + curChar;
 				}
 				//console.log(curChar);
-				console.log(this.modifiedString);
+				//console.log(this.modifiedString);
 				identifierBuffer = "";
 				this.tokens.push(curChar);
 			}
 			cursor++;
 		}
-		console.log(this.tokens);
+		//console.log(this.tokens);
 		this.modifiedString = this.modifiedString.substring(0, this.modifiedString.length - 1);
-		console.log(this.modifiedString)
+		//console.log(this.modifiedString)
 		this.display(); 
 	},
 	is_operator : function(character){
@@ -202,7 +234,7 @@ var tokenizer = {
 function scrollTo(div,callback)
 {
   // Scroll
-  console.log("scrollTo");
-  console.log(div);
+  //console.log("scrollTo");
+  //console.log(div);
   return $('html,body').animate({scrollTop: div.offset().top},'slow','swing',callback);
 }

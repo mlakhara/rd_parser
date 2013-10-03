@@ -19,6 +19,15 @@ html,body{
 div.section {
 	height: 100%;
 }
+div#parserContainer.success {
+	background-color: #2ecc71;
+	color: white;
+}
+div#parserContainer.error {
+	background-color: #c0392b;
+	color: white;
+}
+
 
 div#intro{
 	background-color: #8e44ad;
