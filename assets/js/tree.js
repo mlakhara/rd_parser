@@ -74,7 +74,7 @@ function init(){
 
     //init Spacetree
     //Create a new ST instance
-    var st = new $jit.ST({
+    st = new $jit.ST({
         'injectInto': 'treeCanvas',
         //set duration for the animation
         duration: 800,
@@ -194,23 +194,6 @@ function init(){
       return document.getElementById(id);  
     };
 
-    var top = get('r-top'), 
-    left = get('r-left'), 
-    bottom = get('r-bottom'), 
-    right = get('r-right');
-    
-    function changeHandler() {
-        if(this.checked) {
-            top.disabled = bottom.disabled = right.disabled = left.disabled = true;
-            st.switchPosition(this.value, "animate", {
-                onComplete: function(){
-                    top.disabled = bottom.disabled = right.disabled = left.disabled = false;
-                }
-            });
-        }
-    };
-    
-    top.onchange = left.onchange = bottom.onchange = right.onchange = changeHandler;
-    //end
+   
 
 }

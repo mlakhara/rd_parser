@@ -12,7 +12,6 @@ $(document).on('ready',function(){
 			parser.failure();
 		}
 	});
-
 });
 
 var parser = {
@@ -25,6 +24,8 @@ var parser = {
 		this.errorFlag = false;
 		this.currentToken = "";
 		this.tokens = [];
+		$("#productions").children("ul").html("");
+		$(".result").hide();
 	},
 	next : function(){
 		this.currentToken = this.tokens[this.cursor];
@@ -46,60 +47,93 @@ var parser = {
 
 	Td : function(){
 			console.log("Td");
-		if(this.currentToken == "*" || this.currentToken == "/" ){
+		if(this.currentToken == "*" ){
+			this.stepAppend("T’->*FT’");
+			this.next();
+			this.F();
+			this.Td;
+		}else if(this.currentToken == "/" ){ 
+			this.stepAppend("T’->/FT’");
 			this.next();
 			this.F();
 			this.Td;
 		}
-		if(this.currentToken == "id"){
+		else if(this.currentToken == "id"){
 			this.error();
+		}else{
+			this.stepAppend("T’-> ε");
 		}
 	},
 
 	F : function(){
 			console.log("F");
+		
 		if(this.currentToken == '('){
+			this.stepAppend("F -> (E) ");
 			this.next();
 			this.E();
 			if(this.currentToken == ')')
 				this.next();
 			else
 				this.error();
+
 		}
-		else if(this.currentToken == "id")
+		else if(this.currentToken == "id"){
+			this.stepAppend("F -> id ");
 			this.next();
+		}
 		else
 			this.error();
 	},
 
 	T : function(){
-			console.log("T");
+		this.stepAppend("T -> FT'");
+		console.log("T");
 		this.F();
 		this.Td();
 	},
 
 	Ed: function(){
-			console.log("Ed");
-			console.log(this.currentToken);
-		if(this.currentToken == '+' || this.currentToken == '-'){
+		console.log("Ed");
+		console.log(this.currentToken);
+		if(this.currentToken == '+'){
+		this.stepAppend("E’->+TE’");
+ 
+			this.next();
+			this.T();
+			this.Ed();
+		}else if(this.currentToken == '-'){
+			this.stepAppend("E’->-TE’");
 			this.next();
 			this.T();
 			this.Ed();
 		}
-		if(this.currentToken == "id")
+		else if(this.currentToken == "id")
 			this.error();
+		else
+			this.stepAppend("E’-> ε");
+
 	},	
  	E : function(){
  		console.log("E");
+ 		this.stepAppend("E -> TE'");
 		this.T();
 		this.Ed();
 	},
+	
+	stepAppend : function(production){
+		$("#productions").children("ul").append("<li class='production'>"+production+"</li>");
+	},
 
 	success : function(){
-		$("#parserContainer").addClass("success");
+		$("#parserContainer").removeClass('error').addClass("success");
+		$("#resultSuccess").show();
+		$("resultError").hide();
 	},
 	failure : function(){
-		$("#parserContainer").addClass("error");
+		$("#parserContainer").removeClass('success').addClass("error");
+		$("#resultSuccess").hide();
+		$("#resultError").show();
 	}
 }
 

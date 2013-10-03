@@ -28,6 +28,11 @@ div#parserContainer.error {
 	color: white;
 }
 
+div#productions{
+	font-size: 20px;
+	text-align: center;
+}
+
 
 div#intro{
 	background-color: #8e44ad;
