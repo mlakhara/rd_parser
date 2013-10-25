@@ -3,14 +3,13 @@
 		<!-- All includes here -->
 		<!-- CSS Files -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
 		<link href="assets/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"><!-- Loading Flat UI -->
 		<link href="assets/css/css/flat-ui.css" rel="stylesheet" type="text/css">
 		<link href="assets/css/style.css" rel="stylesheet" type="text/css">
 		<script language="javascript" type="text/javascript" src="assets/js/jq.min.js">
 </script>
-		<script language="javascript" type="text/javascript" src="assets/js/jit/jit-yc.js">
-</script>
-		<title></title>
+		<title>Recursive Descent Parser</title>
 	</head>
 	<body>
 		<div id="storyboard">
@@ -47,10 +46,10 @@
 								This visualisation implements the parser for language represented by the following productions.
 							</p>
 							<p class="lato-bl text">
-								E-&gt;TE’<br>
-								E’-&gt;+TE’|-TE’| ε<br>
-								T -&gt; FT'<br>
-								T’-&gt;*FT’|/FT’| ε<br>
+								E-&gt;TE&rsquo;<br>
+								E’-&gt;+TE&rsquo;|-TE&rsquo;| &epsilon;<br>
+								T -&gt; FT &rsquo;<br>
+								T’-&gt;*FT&rsquo;|/FT&rsquo;| &epsilon;<br>
 								F -&gt; (E) | id
 							</p>
 						</div>
@@ -108,7 +107,7 @@
 						<div id="productions" class="col-md-12">
 						<ul>
 
-						<ul>
+						</ul>
 						</div>
 					</div>
 					<div class="row">
